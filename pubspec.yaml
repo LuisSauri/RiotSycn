@@ -15,7 +15,6 @@ dependencies:
   video_player: ^2.4.8
   cupertino_icons: ^1.0.2
   flutter_form_builder: ^7.4.0
-  intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
