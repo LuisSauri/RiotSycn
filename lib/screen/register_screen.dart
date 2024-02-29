@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:riot_sync/screen/custom_clipper.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
+// ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
 import 'package:riot_sync/screen/login_page.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class RegisterScreen extends StatefulWidget {
-  const RegisterScreen({super.key});
-
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -109,10 +108,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           const SizedBox(height: 20),
           TextButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const LoginPage()),
-              );
+              Navigator.pushNamed(context, 'login_page');
             },
             child: const Text(
               "Ya tengo una cuenta",
@@ -202,10 +198,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _validateAndSubmit() {
     final form = FormBuilder.of(context);
     if (form != null && form.saveAndValidate()) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => const LoginPage()),
-      );
+      // Tu lógica para procesar la información del formulario
+      print("Formulario válido. Procesando datos...");
     }
   }
 }

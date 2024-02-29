@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:riot_sync/screen/juegos-screen/form/agregar_juego_screen.dart';
 
 class JuegosScreen extends StatefulWidget {
+  const JuegosScreen({super.key});
+
   @override
   _JuegosScreenState createState() => _JuegosScreenState();
 }
@@ -9,9 +10,6 @@ class JuegosScreen extends StatefulWidget {
 class _JuegosScreenState extends State<JuegosScreen> {
   List<Game> _games = [
     Game(name: 'Valorant', image: 'assets/logo_valorant.png'),
-    Game(name: 'League of Legends', image: 'assets/logo_lol.png'),
-    Game(name: 'League of Legends', image: 'assets/logo_lol.png'),
-    Game(name: 'League of Legends', image: 'assets/logo_lol.png'),
     Game(name: 'League of Legends', image: 'assets/logo_lol.png'),
   ];
 
@@ -39,10 +37,7 @@ class _JuegosScreenState extends State<JuegosScreen> {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AddGameScreen()),
-              );
+              Navigator.pushNamed(context, 'add_game_screen');
             },
             child: Text('Nuevo Juego'),
           ),

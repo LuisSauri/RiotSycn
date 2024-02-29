@@ -1,21 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
-import 'package:riot_sync/screen/login_page.dart';
-import 'package:riot_sync/screen/register_screen.dart';
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-    );
-  }
-}
 
 class ChoiceScreen extends StatefulWidget {
   const ChoiceScreen({super.key});
@@ -52,7 +36,7 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
         children: [
           _controller!.value.isInitialized
               ? DecoratedBox(
-                  decoration: BoxDecoration(color: Colors.black),
+                  decoration: const BoxDecoration(color: Colors.black),
                   child: Center(
                     child: Align(
                       alignment: Alignment.center,
@@ -79,14 +63,10 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                   height: 300,
                   width: 300,
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const LoginPage()),
-                    );
+                    Navigator.pushNamed(context, 'login_page');
                   }, // Navigate to LoginScreen
                   style: ElevatedButton.styleFrom(
                     primary: Colors.red,
@@ -94,9 +74,10 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Iniciar sesión',
                     style: TextStyle(
                       fontSize: 18,
@@ -105,24 +86,22 @@ class _ChoiceScreenState extends State<ChoiceScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
+                const SizedBox(height: 16),
                 OutlinedButton(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => RegisterScreen()),
-                    );
+                    Navigator.pushNamed(context, 'register_screen');
                   },
                   style: OutlinedButton.styleFrom(
-                    side: BorderSide(
+                    side: const BorderSide(
                         color: Colors.red,
                         width: 2), // Change border color and width
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    padding: EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 32, vertical: 16),
                   ),
-                  child: Text(
+                  child: const Text(
                     'Registrarse',
                     style: TextStyle(
                       fontSize: 18,

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'custom_clipper.dart';
-import 'package:riot_sync/screen/home.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -183,10 +182,7 @@ class _LoginPageState extends State<LoginPage> {
     });
 
     if (!nameError && !passwordError) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(builder: (context) => HomeScreen()),
-      );
+      Navigator.pushNamed(context, 'home_screen');
     }
   }
 }
