@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:riot_sync/screen/custom_clipper.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
-import 'package:riot_sync/screen/login_page.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class RegisterScreen extends StatefulWidget {
