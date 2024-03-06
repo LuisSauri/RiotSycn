@@ -6,7 +6,7 @@ class AppRoutes {
   static const initialRoute = 'choice';
 
   static final menuOption = <MenuOption>[
-    MenuOption(
+    const MenuOption(
         route: 'home', icon: Icons.home, name: 'Home ', screen: HomeScreen()),
   ];
 
@@ -14,7 +14,7 @@ class AppRoutes {
     'choice': (BuildContext context) => const ChoiceScreen(),
     'login_page': (BuildContext context) => const LoginPage(),
     'register_screen': (BuildContext context) => RegisterScreen(),
-    'home_screen': (BuildContext context) => HomeScreen(),
+    'home_screen': (BuildContext context) => const HomeScreen(),
     'juegos_screen': (BuildContext context) => const JuegosScreen(),
     'add_game_screen': (BuildContext context) => AddGameScreen(),
   };

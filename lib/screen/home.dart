@@ -1,30 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:riot_sync/screen/navbar.dart';
 
 class HomeScreen extends StatelessWidget {
-  final List<BottomNavigationBarItem> _bottomNavigationBarItems = [
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.newspaper),
-      label: 'Noticias',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.games),
-      label: 'Juegos',
-    ),
-    const BottomNavigationBarItem(
-      icon: Icon(Icons.person),
-      label: 'Mi Perfil',
-    ),
-  ];
-
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        title: const Text('Noticias'),
-      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,43 +25,36 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _bottomNavigationBarItems,
+      bottomNavigationBar: NavBarScreen(
         currentIndex: 0,
-        selectedItemColor: Colors.white,
-        unselectedItemColor: Colors.grey[400],
-        backgroundColor: Colors.black,
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.pushNamed(context, 'juegos_screen');
-          } else if (index == 2) {
-            // Navegar a la pantalla de mi perfil
-          }
-        },
+        onTap: (int index) {},
       ),
     );
   }
 
   Widget _buildHeader() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        const Text(
-          'Noticias',
-          style: TextStyle(
-            color: Colors.white,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+    return Padding(
+      padding: const EdgeInsets.only(top: 40.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text(
+            'Noticias',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: () {},
-          icon: const Icon(
-            Icons.tune,
-            color: Colors.white,
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(
+              Icons.tune,
+              color: Colors.white,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
