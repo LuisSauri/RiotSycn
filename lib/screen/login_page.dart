@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'custom_clipper.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:riot_sync/services/firebase_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -175,14 +178,63 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _validateFields() {
+  void _validateFields() async {
     setState(() {
       nameError = nameController.text.isEmpty;
       passwordError = passwordController.text.isEmpty;
     });
 
     if (!nameError && !passwordError) {
-      Navigator.pushNamed(context, 'home_screen');
+      // Aquí verificamos las credenciales con Firebase
+      final bool isValid = await validateCredentials(
+          nameController.text, passwordController.text);
+      if (isValid) {
+        // Si las credenciales son válidas, navega a la pantalla de inicio
+        Navigator.pushNamed(context, 'home_screen');
+      } else {
+        // Si las credenciales no son válidas, muestra un mensaje de error
+        setState(() {
+          nameError = true;
+          passwordError = true;
+        });
+      }
+    }
+  }
+
+  Future<bool> validateCredentials(String email, String password) async {
+    try {
+      // Consulta Firestore para encontrar el documento con el email proporcionado
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('registro')
+          .where('email', isEqualTo: email)
+          .get();
+
+      // Si no se encuentra ningún documento con el email proporcionado, las credenciales son inválidas
+      if (querySnapshot.docs.isEmpty) {
+        return false;
+      }
+
+      // Obtén el primer documento (debería haber solo uno, ya que el correo electrónico debe ser único)
+      var userData = querySnapshot.docs.first.data();
+
+      // Verifica si userData no es null y si contiene la clave 'Contraseña'
+      if (userData != null &&
+          userData is Map &&
+          userData.containsKey('Contraseña')) {
+        // Obten la contraseña almacenada en el documento
+        String storedPassword = userData['Contraseña'];
+
+        // Verifica si la contraseña proporcionada coincide con la contraseña almacenada
+        if (password == storedPassword) {
+          return true; // Las credenciales son válidas
+        }
+      }
+
+      // Si no se pudo obtener la contraseña o no coincide, las credenciales son inválidas
+      return false;
+    } catch (e) {
+      print('Error al validar las credenciales: $e');
+      return false; // Ocurrió un error, las credenciales son inválidas
     }
   }
 }
